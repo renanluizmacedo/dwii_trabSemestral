@@ -33,6 +33,7 @@
             <div class="collapse navbar-collapse" id="itens">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item ps-2 me-3"><a class="nav-link" href="{{route('eixos.index')}}" class="dropdown-item">Eixos</a></li>
+                    <li class="nav-item ps-2 me-3"><a class="nav-link" href="{{route('cursos.index')}}" class="dropdown-item">Cursos</a></li>
                 </ul>
             </div>
         </div>

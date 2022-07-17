@@ -79,7 +79,9 @@ class EixoController extends Controller
     {
         $obj = Eixo::find($id);
 
-        if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
+        if (!isset($obj)) {
+            return "<h1>ID: $id não encontrado!";
+        }
 
         $obj->destroy($id);
 
