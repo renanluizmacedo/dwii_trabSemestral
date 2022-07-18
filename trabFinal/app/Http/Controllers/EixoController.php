@@ -10,8 +10,8 @@ class EixoController extends Controller
 
     public function index()
     {
-        $data = Eixo::orderBy('nome')->get();
-        return view('eixos.index', compact(['data']));
+        $dados = Eixo::orderBy('nome')->get();
+        return view('eixos.index', compact(['dados']));
     }
 
     public function create()
@@ -40,11 +40,9 @@ class EixoController extends Controller
     {
         $dados = Eixo::find($id);
 
-        if (!isset($dados)) {
-            return "<h1>ID: $id não encontrado!</h1>";
+        if (isset($dados)) {
+            return view('eixos.edit', compact(['dados']));
         }
-
-        return view('eixos.edit', compact('dados'));
     }
 
     public function update(Request $request, $id)
@@ -79,11 +77,9 @@ class EixoController extends Controller
     {
         $obj = Eixo::find($id);
 
-        if (!isset($obj)) {
-            return "<h1>ID: $id não encontrado!";
+        if (isset($obj)) {
+            $obj->delete();
         }
-
-        $obj->destroy($id);
 
         return redirect()->route('eixos.index');
     }

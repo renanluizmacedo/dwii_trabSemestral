@@ -10,9 +10,9 @@ class CursoController extends Controller
 {
     public function index()
     {
-        $data = Curso::orderBy('nome')->get();
+        $dados = Curso::orderBy('nome')->get();
 
-        return view('cursos.index', compact('data'));
+        return view('cursos.index', compact('dados'));
     }
 
     public function create()
@@ -37,10 +37,10 @@ class CursoController extends Controller
     public function edit($id)
     {
         $eixos = Eixo::orderBy('nome')->get();
-        $data = Curso::find($id);
+        $dados = Curso::find($id);
 
-        if (isset($data)) {
-            return view('cursos.edit', compact(['data', 'eixos']));
+        if (isset($dados)) {
+            return view('cursos.edit', compact(['dados', 'eixos']));
         } else {
             $msg = "Curso";
             $link = "cursos.index";
