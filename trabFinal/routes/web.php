@@ -11,3 +11,4 @@ Route::get('/', function () { return view('index'); })->name('index');
 Route::resource('/eixos', 'EixoController');
 Route::resource('/cursos', 'CursoController');
 Route::resource('/professores', 'ProfessorController');
+Route::resource('/disciplinas', 'DisciplinaController');
