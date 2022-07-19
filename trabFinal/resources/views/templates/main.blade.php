@@ -36,6 +36,7 @@
                     <li class="nav-item ps-2 me-3"><a class="nav-link" href="{{route('cursos.index')}}" class="dropdown-item">Cursos</a></li>
                     <li class="nav-item ps-2 me-3"><a class="nav-link" href="{{route('professores.index')}}" class="dropdown-item">Professores</a></li>
                     <li class="nav-item ps-2 me-3"><a class="nav-link" href="{{route('disciplinas.index')}}" class="dropdown-item">Disciplinas</a></li>
+                    <li class="nav-item ps-2 me-3"><a class="nav-link" href="{{route('docencias.index')}}" class="dropdown-item">Docencias</a></li>
                 </ul>
             </div>
         </div>
