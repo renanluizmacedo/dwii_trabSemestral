@@ -7,10 +7,13 @@ use App\Models\Professor;
 use App\Models\Eixo;
 use App\Models\Docencia;
 
+
 class ProfessorController extends Controller
 {
+
     public function index()
     {
+
         $data = Professor::with(['eixo' => function ($q) {
             $q->withTrashed();
         }])->orderBy('nome')->get();
@@ -32,7 +35,7 @@ class ProfessorController extends Controller
             'email' => 'required|max:250|min:15|unique:professors',
             'siape' => 'required|max:10|min:8',
             'eixo' => 'required',
-            'status' => 'required',
+            'radio' => 'required',
 
         ];
 
@@ -48,6 +51,7 @@ class ProfessorController extends Controller
 
     public function store(Request $request)
     {
+
         Self::validation($request);
 
         $eixo = Eixo::find($request->eixo);
@@ -75,9 +79,9 @@ class ProfessorController extends Controller
         return view('professores.show', compact(['doc']));
     }
 
-
     public function edit($id)
     {
+
         $eixos = Eixo::orderBy('nome')->get();
         $data = Professor::with(['eixo' => function ($q) {
             $q->withTrashed();
@@ -90,6 +94,8 @@ class ProfessorController extends Controller
 
     public function update(Request $request, $id)
     {
+
+
         $rules = [
             'nome' => 'required|max:100|min:5',
             'email' => 'required|max:250|min:15|',
@@ -126,6 +132,5 @@ class ProfessorController extends Controller
 
     public function destroy($id)
     {
-        //
     }
 }
