@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
             <a href="#" class="navbar-brand ms-sm-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
@@ -66,14 +66,25 @@
                         <li><a href="{{route('disciplinas.index')}}" class="dropdown-item">Disciplinas</a></li>
                     </ul>
                 </li>
-                </ul>
-            </div>
+                <li class="nav-item ps-2 me-3">
+                    <form method="POST" action="{{ route('logout') }}" id="form">
+                        @csrf
+                        <a nohref style="cursor:pointer" class="nav-link" onclick="document.getElementById('form').submit()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+                                <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                            </svg>
+                            <span class="ps-1 text-white">Sair</span>
+                        </a>
+                    </form>
+                </li>
+            </ul>
+        </div>
         </div>
     </nav>
     <div class="container py-4">
         <div class="row">
             <div class="col">
-                <h3 class="display-7 text-secondary d-none d-md-block"><b>SysColetivo</b></h3>
+                <h3 class="display-7 text-secondary d-none d-md-block"><b>Autenticação</b></h3>
             </div>
             @if(isset($rota) && UserPermission::isAuthorized('cursos.create'))
             <div class="col d-flex justify-content-end">
@@ -147,28 +158,35 @@
 <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
 <script type="text/javascript">
-    function showInfoModal(data, fields) {
-        data = JSON.parse(data)
-        fields = JSON.parse(fields)
+    function showInfoModal() {
+
         $('#infoModal').modal().find('.modal-body').html("");
-        for (let a = 0; a < fields.length; a++) {
-            $('#infoModal').modal().find('.modal-body').append("<b>" + data[fields[a]] + "</b><br>");
+
+        for (let a = 0; a < arguments.length; a++) {
+            $('#infoModal').modal().find('.modal-body').append("<b>" + arguments[a] + "</b><br>");
         }
+
+
         $("#infoModal").modal('show');
     }
+
     function closeInfoModal() {
         $("#infoModal").modal('hide');
     }
+
     function showRemoveModal(id, nome) {
         $('#id_remove').val(id);
         $('#removeModal').modal().find('.modal-body').html("");
         $('#removeModal').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'" + nome + "'</b> ?");
         $("#removeModal").modal('show');
     }
+
     function closeRemoveModal() {
         $("#removeModal").modal('hide');
     }
+
     function remove() {
+
         let id = $('#id_remove').val();
         let form = "form_" + $('#id_remove').val();
         document.getElementById(form).submit();

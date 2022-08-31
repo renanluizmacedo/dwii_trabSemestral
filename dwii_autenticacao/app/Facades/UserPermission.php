@@ -10,7 +10,7 @@ class UserPermission
     public static function loadPermissions($user_type)
     {
 
-        $sess = Array();
+        $sess = array();
         $perm = Permission::where('type_id', $user_type)->get();
 
         foreach ($perm as $item) {
@@ -23,6 +23,8 @@ class UserPermission
 
     public static function isAuthorized($rule)
     {
+
+
 
         $permissions = session('user_permissions');
 
